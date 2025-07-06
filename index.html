@@ -3,83 +3,142 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Shreya 🎉</title>
+  <title>Happy Birthday Muski 🎁</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
       font-family: 'Segoe UI', sans-serif;
       background: #ffe6f0;
-      color: #333;
+      overflow-x: hidden;
     }
-    header {
-      background: #ff99cc;
-      color: white;
-      padding: 2rem;
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
       text-align: center;
-      font-size: 2rem;
-      font-weight: bold;
-      letter-spacing: 1px;
     }
-    section.message {
-      max-width: 700px;
-      margin: 2rem auto;
+    .gift-box {
+      width: 120px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .gift-box:hover {
+      transform: scale(1.1);
+    }
+    .hidden {
+      display: none;
+    }
+    .reveal {
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    h1, h2, p {
+      margin: 1rem 0;
+      color: #cc0066;
+    }
+    .cake {
+      width: 150px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .cake:hover {
+      transform: scale(1.05);
+    }
+    .flowers {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .flower {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle, #ff99cc, #ff66b2);
+      border-radius: 50%;
+      animation: fall 4s linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100px); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+    .letter {
+      padding: 2rem;
       background: white;
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 0 4px 20px rgba(255, 153, 204, 0.3);
+      margin: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
     }
-    section.message p {
-      line-height: 1.7;
-      font-size: 1.1rem;
-    }
-    .footer {
-      margin-top: 3rem;
-      text-align: center;
-      font-style: italic;
-      color: #e60073;
-      font-weight: 500;
-      padding-bottom: 2rem;
-    }
-    .date {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: #cc6699;
-    }
-    .heart {
-      font-size: 2rem;
-      text-align: center;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); color: #ff4da6; }
-      50% { transform: scale(1.2); color: #ff99cc; }
-      100% { transform: scale(1); color: #ff4da6; }
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <header>Happy Birthday Shreya 🎂💖</header>
 
-  <div class="date">31st August, 2004</div>
-
-  <section class="message">
-    <p>On this special day, I want to take a moment to celebrate not just your birthday, but the incredible person you are. Your presence lights up every room you enter, just like how you've lit up our lives.</p>
-
-    <p>Your kindness, wisdom, and beautiful spirit inspire everyone around you. You have this magical way of making ordinary moments feel extraordinary, and today is all about celebrating the magic that is uniquely you.</p>
-
-    <p>May this new year of your life be filled with endless joy, beautiful surprises, and all the happiness your heart can hold. You deserve nothing but the very best that life has to offer.</p>
-
-    <p>Wishing you the most wonderful birthday! 🎂✨</p>
-
-    <p>With love and warm wishes,<br>
-    Someone who cares about you 💕</p>
-  </section>
-
-  <div class="heart">💗</div>
-
-  <div class="footer">
-    This is for you my love with my whole heart Baby by your favourite person, Shoaeb.
+  <div class="center" id="gift-screen">
+    <h1>A Little Surprise for You, Muski 🎁</h1>
+    <img src="https://cdn-icons-png.flaticon.com/512/3534/3534084.png" alt="Gift" class="gift-box" onclick="showBirthday()">
   </div>
+
+  <div class="hidden" id="birthday-screen">
+    <div class="center">
+      <h1 class="reveal">Happy Birthday Shreya 🎂💖</h1>
+      <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png" alt="Cake" class="cake" onclick="cutCake()">
+    </div>
+    <div class="flowers hidden" id="flowers"></div>
+    <section class="letter">
+      <p>On this special day, I want to take a moment to celebrate not just your birthday, but the incredible person you are. Your presence lights up every room you enter, just like how you've lit up our lives.</p>
+
+      <p>Your kindness, wisdom, and beautiful spirit inspire everyone around you. You have this magical way of making ordinary moments feel extraordinary, and today is all about celebrating the magic that is uniquely you.</p>
+
+      <p>May this new year of your life be filled with endless joy, beautiful surprises, and all the happiness your heart can hold. You deserve nothing but the very best that life has to offer.</p>
+
+      <p>Wishing you the most wonderful birthday! 🎂✨</p>
+
+      <p>With love and warm wishes,<br>
+      Someone who cares about you 💕</p>
+    </section>
+
+    <div class="center">
+      <p style="color:#e60073; font-weight:bold; font-style:italic;">This is for you my love with my whole heart Baby by your favourite person, Shoaeb.</p>
+    </div>
+  </div>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/12/17/audio_750b017f10.mp3?filename=romantic-piano-126902.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+    function showBirthday() {
+      document.getElementById('gift-screen').classList.add('hidden');
+      document.getElementById('birthday-screen').classList.remove('hidden');
+    }
+
+    function cutCake() {
+      const flowerContainer = document.getElementById('flowers');
+      flowerContainer.classList.remove('hidden');
+      for (let i = 0; i < 30; i++) {
+        const flower = document.createElement('div');
+        flower.classList.add('flower');
+        flower.style.left = Math.random() * 100 + 'vw';
+        flower.style.animationDelay = Math.random() * 3 + 's';
+        flowerContainer.appendChild(flower);
+      }
+    }
+  </script>
+
 </body>
 </html>

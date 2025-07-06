@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Muski 🎁</title>
+  <title>Happy Birthday Muski 🎉</title>
   <style>
     * {
       margin: 0;
@@ -12,46 +12,43 @@
     }
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #ffe6f0;
+      background: #fff0f5;
       overflow-x: hidden;
     }
     .center {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       flex-direction: column;
       text-align: center;
+      height: 100vh;
+      padding: 2rem;
     }
-    .gift-box {
-      width: 120px;
+    .gift {
+      width: 130px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      animation: popin 1s ease;
     }
-    .gift-box:hover {
-      transform: scale(1.1);
+    @keyframes popin {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
     .hidden {
       display: none;
-    }
-    .reveal {
-      animation: fadeIn 1s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
     h1, h2, p {
       margin: 1rem 0;
       color: #cc0066;
     }
     .cake {
-      width: 150px;
+      width: 160px;
+      margin-top: 1rem;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      animation: glow 2s infinite alternate;
     }
-    .cake:hover {
-      transform: scale(1.05);
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 10px #ff99cc); }
+      to { filter: drop-shadow(0 0 25px #ff3399); }
     }
     .flowers {
       position: fixed;
@@ -60,29 +57,58 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      overflow: hidden;
+      z-index: 10;
     }
     .flower {
       position: absolute;
       width: 30px;
       height: 30px;
-      background: radial-gradient(circle, #ff99cc, #ff66b2);
-      border-radius: 50%;
-      animation: fall 4s linear infinite;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/616/616408.png');
+      background-size: cover;
+      animation: fall 6s linear infinite;
     }
     @keyframes fall {
-      0% { transform: translateY(-100px); opacity: 1; }
-      100% { transform: translateY(100vh); opacity: 0; }
+      0% { transform: translateY(-100px) rotate(0); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
     .letter {
       padding: 2rem;
+      margin: 3rem 1rem;
+      border-radius: 15px;
       background: white;
-      margin: 2rem;
-      border-radius: 1rem;
       box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    audio {
-      display: none;
+    .typewriter-text {
+      display: inline-block;
+      border-right: 2px solid #ff4da6;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 6s steps(60, end), blink 0.7s step-end infinite;
+      font-size: 1.2rem;
+      color: #cc0066;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #ff4da6; }
+    }
+    #music-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #ffccff;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #cc0066;
+      z-index: 20;
     }
   </style>
 </head>
@@ -90,38 +116,50 @@
 
   <div class="center" id="gift-screen">
     <h1>A Little Surprise for You, Muski 🎁</h1>
-    <img src="https://cdn-icons-png.flaticon.com/512/3534/3534084.png" alt="Gift" class="gift-box" onclick="showBirthday()">
+    <img src="https://cdn-icons-png.flaticon.com/512/3534/3534084.png" alt="Gift" class="gift" onclick="showBirthday()">
   </div>
 
   <div class="hidden" id="birthday-screen">
     <div class="center">
-      <h1 class="reveal">Happy Birthday Shreya 🎂💖</h1>
+      <h1 style="animation: glow 2s infinite alternate;">Happy Birthday Shreya 💖</h1>
       <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png" alt="Cake" class="cake" onclick="cutCake()">
     </div>
     <div class="flowers hidden" id="flowers"></div>
-    <section class="letter">
+    <div class="letter">
+      <p class="typewriter-text">To my dearest Muski...</p>
+      <br><br>
       <p>On this special day, I want to take a moment to celebrate not just your birthday, but the incredible person you are. Your presence lights up every room you enter, just like how you've lit up our lives.</p>
-
       <p>Your kindness, wisdom, and beautiful spirit inspire everyone around you. You have this magical way of making ordinary moments feel extraordinary, and today is all about celebrating the magic that is uniquely you.</p>
-
       <p>May this new year of your life be filled with endless joy, beautiful surprises, and all the happiness your heart can hold. You deserve nothing but the very best that life has to offer.</p>
-
       <p>Wishing you the most wonderful birthday! 🎂✨</p>
-
-      <p>With love and warm wishes,<br>
-      Someone who cares about you 💕</p>
-    </section>
-
-    <div class="center">
-      <p style="color:#e60073; font-weight:bold; font-style:italic;">This is for you my love with my whole heart Baby by your favourite person, Shoaeb.</p>
+      <p>With love and warm wishes,<br>Someone who cares about you 💕</p>
+      <br>
+      <p style="color:#e60073; font-weight:bold; font-style:italic; text-align:center;">This is for you my love with my whole heart Baby by your favourite person, Shoaeb.</p>
     </div>
   </div>
+
+  <div id="music-toggle" onclick="toggleMusic()">🔊 Music On</div>
 
   <audio id="bg-music" autoplay loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/12/17/audio_750b017f10.mp3?filename=romantic-piano-126902.mp3" type="audio/mp3">
   </audio>
 
   <script>
+    const music = document.getElementById('bg-music');
+    const toggleBtn = document.getElementById('music-toggle');
+    let musicOn = true;
+
+    function toggleMusic() {
+      if (musicOn) {
+        music.pause();
+        toggleBtn.innerText = '🔇 Music Off';
+      } else {
+        music.play();
+        toggleBtn.innerText = '🔊 Music On';
+      }
+      musicOn = !musicOn;
+    }
+
     function showBirthday() {
       document.getElementById('gift-screen').classList.add('hidden');
       document.getElementById('birthday-screen').classList.remove('hidden');
@@ -130,15 +168,16 @@
     function cutCake() {
       const flowerContainer = document.getElementById('flowers');
       flowerContainer.classList.remove('hidden');
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 35; i++) {
         const flower = document.createElement('div');
         flower.classList.add('flower');
         flower.style.left = Math.random() * 100 + 'vw';
         flower.style.animationDelay = Math.random() * 3 + 's';
         flowerContainer.appendChild(flower);
       }
+      const sound = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_243ea6631c.mp3');
+      sound.play();
     }
   </script>
-
 </body>
 </html>

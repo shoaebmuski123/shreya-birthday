@@ -7,7 +7,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', sans-serif; background: #ffe6f0; overflow-x: hidden; }
-    .page { display: none; height: 100vh; width: 100vw; justify-content: center; align-items: center; flex-direction: column; text-align: center; padding: 2rem; }
+    .page { display: none; height: 100vh; width: 100vw; justify-content: center; align-items: center; flex-direction: column; text-align: center; padding: 2rem; position: relative; }
     .active { display: flex; animation: fadeIn 1s ease-in-out; }
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
@@ -16,18 +16,20 @@
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
     /* Page 2 */
-    .birthday-text { font-size: 2rem; color: #cc0066; font-weight: bold; }
-    .next-button { margin-top: 2rem; padding: 1rem 2rem; font-size: 1rem; background: #ffccff; color: #cc0066; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 0 10px #ff99cc; transition: 0.3s; }
+    .birthday-text { font-size: 2rem; color: #cc0066; font-weight: bold; z-index: 1; }
+    .next-button { margin-top: 2rem; padding: 1rem 2rem; font-size: 1rem; background: #ffccff; color: #cc0066; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 0 10px #ff99cc; transition: 0.3s; z-index: 1; }
     .next-button:hover { background: #ffcce6; }
 
     .petals { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
     .petal {
       position: absolute;
-      width: 30px;
-      height: 30px;
-      background-image: url('https://cdn-icons-png.flaticon.com/512/616/616408.png');
+      width: 25px;
+      height: 25px;
+      background-image: url('https://i.ibb.co/3FgkVZ4/rose-petal.png');
       background-size: cover;
+      background-repeat: no-repeat;
       animation: fall 10s linear infinite;
+      opacity: 0.8;
     }
     @keyframes fall {
       0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
@@ -101,47 +103,3 @@
   </div>
 
   <!-- Page 3 -->
-  <div class="page" id="page3">
-    <div onclick="openEnvelope()" class="envelope"></div>
-    <div class="letter-content" id="letter">
-      <p>On this special day, I want to take a moment to celebrate not just your birthday, but the incredible person you are. Your presence lights up every room you enter, just like how you've lit up our lives.</p>
-      <p>Your kindness, wisdom, and beautiful spirit inspire everyone around you. You have this magical way of making ordinary moments feel extraordinary, and today is all about celebrating the magic that is uniquely you.</p>
-      <p>May this new year of your life be filled with endless joy, beautiful surprises, and all the happiness your heart can hold. You deserve nothing but the very best that life has to offer.</p>
-      <p>Wishing you the most wonderful birthday! 🎂✨</p>
-      <p>With love and warm wishes,<br>Someone who cares about you 💕</p>
-
-      <div class="love-box">
-        This is for you my love with my whole heart Baby by your favourite person, Shoaeb.
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function goToPage(n) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById('page' + n).classList.add('active');
-      if (n === 2) startPetalRain();
-    }
-
-    function startPetalRain() {
-      const container = document.getElementById('petals');
-      for (let i = 0; i < 30; i++) {
-        const petal = document.createElement('div');
-        petal.className = 'petal';
-        petal.style.left = Math.random() * 100 + 'vw';
-        petal.style.animationDelay = Math.random() * 5 + 's';
-        container.appendChild(petal);
-      }
-    }
-
-    function openEnvelope() {
-      const envelope = document.querySelector('.envelope');
-      const letter = document.getElementById('letter');
-      envelope.classList.add('open');
-      setTimeout(() => {
-        letter.classList.add('show-letter');
-      }, 1000);
-    }
-  </script>
-</body>
-</html>

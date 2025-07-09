@@ -20,6 +20,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       height: 100vh;
       width: 100vw;
       transition: background 2s ease;
@@ -27,26 +28,9 @@
 
     .page1 {
       background: linear-gradient(145deg, #111111, #1a1a1a);
-      border: 8px solid #ffccff;
+      border: 10px double #ffb6c1;
+      border-radius: 20px;
       padding: 20px;
-      position: relative;
-    }
-
-    .scroll-border::before {
-      content: "\1F4DC"; /* 📜 */
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 2rem;
-    }
-
-    .scroll-border::after {
-      content: "\1F4DC";
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      font-size: 2rem;
-      transform: rotate(180deg);
     }
 
     .gift-box {
@@ -73,6 +57,7 @@
       flex-direction: column;
       background: white;
       transition: background 2s ease-in-out;
+      position: relative;
     }
 
     .candle {
@@ -101,7 +86,7 @@
       100% { transform: scaleY(1); }
     }
 
-    .blow-btn {
+    .next-btn {
       font-size: 1.5rem;
       padding: 10px 20px;
       background: pink;
@@ -109,6 +94,7 @@
       border-radius: 10px;
       cursor: pointer;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      margin-top: 20px;
     }
 
     .star {
@@ -126,11 +112,58 @@
         opacity: 0;
       }
     }
+
+    .page3 {
+      display: none;
+      flex-direction: column;
+      background: linear-gradient(to bottom right, #ffe6f0, #ffffff);
+      padding: 40px;
+      border: 10px double #000;
+      border-radius: 25px;
+      position: relative;
+    }
+
+    .page3::before, .page3::after {
+      content: "";
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: #fff;
+      border: 3px solid #000;
+      border-radius: 50%;
+    }
+
+    .page3::before {
+      top: -20px;
+      left: -20px;
+    }
+
+    .page3::after {
+      bottom: -20px;
+      right: -20px;
+    }
+
+    .letter {
+      background: #111;
+      padding: 30px;
+      border-radius: 15px;
+      color: #fff;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      max-width: 700px;
+      animation: glowText 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px #ffb6c1; }
+      to { text-shadow: 0 0 20px #ff69b4, 0 0 30px #fff; }
+    }
   </style>
 </head>
 <body>
   <!-- Page 1 -->
-  <div class="page page1 scroll-border" id="page1">
+  <div class="page page1" id="page1">
     <div class="gift-box" onclick="goToPage2()">OPEN</div>
   </div>
 
@@ -139,7 +172,21 @@
     <div class="candle" id="candle">
       <div class="flame" id="flame"></div>
     </div>
-    <button class="blow-btn" onclick="blowCandle()">Blow</button>
+    <button class="next-btn" onclick="goToPage3()" id="nextBtn" style="display:none">Next</button>
+  </div>
+
+  <!-- Page 3 -->
+  <div class="page page3" id="page3">
+    <div class="letter">
+      My dearest Muski,
+      <br><br>
+      On this special day, I want you to know just how much you mean to me. Your smile brightens my darkest days and your presence fills my heart with warmth I never knew existed. You are my light, my love, my everything. This is not just a letter, it is a piece of my soul, wrapped in words, glowing just for you.
+      <br><br>
+      With all the love in my heart,
+      <br>
+      Yours forever,<br>
+      Shoaeb ❤️
+    </div>
   </div>
 
   <script>
@@ -148,13 +195,19 @@
       document.getElementById('page2').style.display = 'flex';
     }
 
+    function goToPage3() {
+      document.getElementById('page2').style.display = 'none';
+      document.getElementById('page3').style.display = 'flex';
+    }
+
     function blowCandle() {
       const flame = document.getElementById('flame');
       flame.style.display = 'none';
       let page2 = document.getElementById('page2');
-      page2.style.background = '#ffc0cb'; // light pink
+      page2.style.background = '#ffc0cb';
+      document.getElementById('nextBtn').style.display = 'block';
 
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 60; i++) {
         let star = document.createElement('div');
         star.className = 'star';
         star.style.left = Math.random() * 100 + 'vw';
@@ -167,6 +220,8 @@
         }, 4000);
       }
     }
+
+    document.querySelector('.candle').addEventListener('click', blowCandle);
   </script>
 </body>
 </html>

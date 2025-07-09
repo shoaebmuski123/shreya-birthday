@@ -1,105 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Muski 🎁</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Muski</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; background: #ffe6f0; overflow-x: hidden; }
-    .page { display: none; height: 100vh; width: 100vw; justify-content: center; align-items: center; flex-direction: column; text-align: center; padding: 2rem; position: relative; }
-    .active { display: flex; animation: fadeIn 1s ease-in-out; }
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-
-    /* Page 1 */
-    .gift-box { width: 130px; cursor: pointer; animation: pulse 2s infinite; }
-    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-
-    /* Page 2 */
-    .birthday-text { font-size: 2rem; color: #cc0066; font-weight: bold; z-index: 1; }
-    .next-button { margin-top: 2rem; padding: 1rem 2rem; font-size: 1rem; background: #ffccff; color: #cc0066; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 0 10px #ff99cc; transition: 0.3s; z-index: 1; }
-    .next-button:hover { background: #ffcce6; }
-
-    .petals { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
-    .petal {
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      background-image: url('https://i.ibb.co/3FgkVZ4/rose-petal.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      animation: fall 10s linear infinite;
-      opacity: 0.8;
-    }
-    @keyframes fall {
-      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    /* Page 3 */
-    .envelope {
-      width: 250px;
-      height: 150px;
-      background: #fff;
-      border: 2px solid #ff99cc;
-      border-radius: 8px;
+    body, html {
+      height: 100%;
+    }
+
+    .page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      transition: background 2s ease;
+    }
+
+    .page1 {
+      background: linear-gradient(145deg, #111111, #1a1a1a);
+      border: 8px solid #ffccff;
+      padding: 20px;
       position: relative;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-    .envelope:after {
-      content: '';
+
+    .scroll-border::before {
+      content: "\1F4DC"; /* 📜 */
       position: absolute;
-      width: 100%;
-      height: 50%;
-      background: #ffccff;
-      top: 0;
-      left: 0;
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      transition: transform 1s;
+      top: 10px;
+      left: 10px;
+      font-size: 2rem;
     }
-    .open .envelope:after { transform: rotateX(180deg); }
 
-    .letter-content {
-      margin-top: 2rem;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
-      max-width: 600px;
-      text-align: left;
-      color: #cc0066;
-      display: none;
+    .scroll-border::after {
+      content: "\1F4DC";
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 2rem;
+      transform: rotate(180deg);
     }
-    .show-letter { display: block; animation: fadeIn 1.5s ease-in-out; }
 
-    .love-box {
-      margin-top: 2rem;
-      background: #ffe6f7;
-      border: 2px dashed #ff66b2;
-      padding: 1rem;
-      border-radius: 15px;
+    .gift-box {
+      background: pink;
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      font-size: 2rem;
       font-weight: bold;
-      color: #cc0066;
-      font-style: italic;
+      color: white;
+      border: 2px dashed white;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .page2 {
+      display: none;
+      flex-direction: column;
+      background: white;
+      transition: background 2s ease-in-out;
+    }
+
+    .candle {
+      width: 60px;
+      height: 150px;
+      background: #ffcccb;
+      border-radius: 10px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .flame {
+      width: 20px;
+      height: 40px;
+      background: orange;
+      border-radius: 50% 50% 0 0;
+      position: absolute;
+      top: -40px;
+      left: 20px;
+      animation: flicker 0.2s infinite;
+    }
+
+    @keyframes flicker {
+      0% { transform: scaleY(1); }
+      50% { transform: scaleY(1.2); }
+      100% { transform: scaleY(1); }
+    }
+
+    .blow-btn {
+      font-size: 1.5rem;
+      padding: 10px 20px;
+      background: pink;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .star {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: gold;
+      border-radius: 50%;
+      animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
-
   <!-- Page 1 -->
-  <div class="page active" id="page1">
-    <h1 style="color:#cc0066; margin-bottom:2rem;">A Little Surprise for You, Muski 🎁</h1>
-    <img src="https://cdn-icons-png.flaticon.com/512/3534/3534084.png" alt="Gift" class="gift-box" onclick="goToPage(2)">
+  <div class="page page1 scroll-border" id="page1">
+    <div class="gift-box" onclick="goToPage2()">OPEN</div>
   </div>
 
   <!-- Page 2 -->
-  <div class="page" id="page2">
-    <div class="petals" id="petals"></div>
-    <div>
-      <h2 class="birthday-text">Happiest Birthday Shreya Baby 🤍</h2>
-      <button class="next-button" onclick="goToPage(3)">Click Next</button>
+  <div class="page page2" id="page2">
+    <div class="candle" id="candle">
+      <div class="flame" id="flame"></div>
     </div>
+    <button class="blow-btn" onclick="blowCandle()">Blow</button>
   </div>
 
-  <!-- Page 3 -->
+  <script>
+    function goToPage2() {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'flex';
+    }
+
+    function blowCandle() {
+      const flame = document.getElementById('flame');
+      flame.style.display = 'none';
+      let page2 = document.getElementById('page2');
+      page2.style.background = '#ffc0cb'; // light pink
+
+      for (let i = 0; i < 30; i++) {
+        let star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.top = -10 + 'px';
+        star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        page2.appendChild(star);
+
+        setTimeout(() => {
+          star.remove();
+        }, 4000);
+      }
+    }
+  </script>
+</body>
+</html>

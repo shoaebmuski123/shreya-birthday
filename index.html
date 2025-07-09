@@ -116,35 +116,16 @@
     .page3 {
       display: none;
       flex-direction: column;
-      background: linear-gradient(to bottom right, #ffe6f0, #ffffff);
-      padding: 40px;
-      border: 10px double #000;
-      border-radius: 25px;
-      position: relative;
-    }
-
-    .page3::before, .page3::after {
-      content: "";
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background: #fff;
-      border: 3px solid #000;
-      border-radius: 50%;
-    }
-
-    .page3::before {
-      top: -20px;
-      left: -20px;
-    }
-
-    .page3::after {
-      bottom: -20px;
-      right: -20px;
+      justify-content: center;
+      align-items: center;
+      background-image: url('/mnt/data/1000058662.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 60px 20px;
     }
 
     .letter {
-      background: #111;
+      background: rgba(0, 0, 0, 0.7);
       padding: 30px;
       border-radius: 15px;
       color: #fff;

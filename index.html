@@ -3,206 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Muski</title>
+  <title>Happy Birthday Shreya ❤️</title>
   <style>
-    * {
+    body, html {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #ffd6e8, #fff0f5);
+      overflow-x: hidden;
     }
-
-    body, html {
-      height: 100%;
-    }
-
     .page {
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      height: 100vh;
-      width: 100vw;
-      transition: background 2s ease;
+      text-align: center;
+      padding: 2rem;
     }
-
-    .page1 {
-      background: linear-gradient(145deg, #111111, #1a1a1a);
-      border: 10px double #ffb6c1;
-      border-radius: 20px;
-      padding: 20px;
+    h1 {
+      font-size: 3rem;
+      color: #e91e63;
+      margin-bottom: 1rem;
+      animation: fadeInDown 2s;
     }
-
-    .gift-box {
-      background: pink;
-      padding: 40px 60px;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-      cursor: pointer;
-      font-size: 2rem;
-      font-weight: bold;
-      color: white;
-      border: 2px dashed white;
-      animation: pulse 2s infinite;
+    p {
+      font-size: 1.25rem;
+      color: #444;
+      max-width: 700px;
+      margin-bottom: 2rem;
+      animation: fadeInUp 3s;
     }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    .heart {
+      font-size: 4rem;
+      animation: heartbeat 1.5s infinite;
+      color: #ff4081;
     }
-
-    .page2 {
-      display: none;
-      flex-direction: column;
-      background: white;
-      transition: background 2s ease-in-out;
-      position: relative;
-    }
-
-    .candle {
-      width: 60px;
-      height: 150px;
-      background: #ffcccb;
-      border-radius: 10px;
-      position: relative;
-      margin-bottom: 20px;
-    }
-
-    .flame {
-      width: 20px;
-      height: 40px;
-      background: orange;
-      border-radius: 50% 50% 0 0;
-      position: absolute;
-      top: -40px;
-      left: 20px;
-      animation: flicker 0.2s infinite;
-    }
-
-    @keyframes flicker {
-      0% { transform: scaleY(1); }
-      50% { transform: scaleY(1.2); }
-      100% { transform: scaleY(1); }
-    }
-
-    .next-btn {
-      font-size: 1.5rem;
-      padding: 10px 20px;
-      background: pink;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      margin-top: 20px;
-    }
-
-    .star {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: gold;
-      border-radius: 50%;
-      animation: fall 3s linear forwards;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh);
-        opacity: 0;
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
       }
     }
-
-    .page3 {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAA');
-      background-size: cover;
-      background-position: center;
-      padding: 60px 20px;
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-
-    .letter {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 30px;
-      border-radius: 15px;
-      color: #fff;
-      font-size: 1.2rem;
-      line-height: 1.8;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-      max-width: 700px;
-      animation: glowText 2s ease-in-out infinite alternate;
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-
-    @keyframes glowText {
-      from { text-shadow: 0 0 10px #ffb6c1; }
-      to { text-shadow: 0 0 20px #ff69b4, 0 0 30px #fff; }
+    .footer {
+      margin-top: 3rem;
+      font-style: italic;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <!-- Page 1 -->
-  <div class="page page1" id="page1">
-    <div class="gift-box" onclick="goToPage2()">OPEN</div>
-  </div>
-
-  <!-- Page 2 -->
-  <div class="page page2" id="page2">
-    <div class="candle" id="candle">
-      <div class="flame" id="flame"></div>
-    </div>
-    <button class="next-btn" onclick="goToPage3()" id="nextBtn" style="display:none">Next</button>
-  </div>
-
-  <!-- Page 3 -->
-  <div class="page page3" id="page3">
-    <div class="letter">
-      My dearest Muski,
-      <br><br>
-      On this special day, I want you to know just how much you mean to me. Your smile brightens my darkest days and your presence fills my heart with warmth I never knew existed. You are my light, my love, my everything. This is not just a letter, it is a piece of my soul, wrapped in words, glowing just for you.
-      <br><br>
-      With all the love in my heart,
-      <br>
-      Yours forever,<br>
-      Shoaeb ❤️
+  <div class="page">
+    <div class="heart">❤️</div>
+    <h1>Happy Birthday Shreya!</h1>
+    <p>
+      On this special day, I want to remind you just how much you mean to me.
+      Your smile lights up my world, your laughter is my favorite sound,
+      and your love is the greatest gift of all.
+    </p>
+    <p>
+      Here's to celebrating the most beautiful soul I’ve ever known — inside and out.
+      May this day be as sweet, graceful, and magical as you are.
+    </p>
+    <p>
+      I love you endlessly, and I’m grateful every single day to call you mine. 💕
+    </p>
+    <div class="footer">
+      Forever yours,<br />
+      <strong>Shoaeb</strong>
     </div>
   </div>
-
-  <script>
-    function goToPage2() {
-      document.getElementById('page1').style.display = 'none';
-      document.getElementById('page2').style.display = 'flex';
-    }
-
-    function goToPage3() {
-      document.getElementById('page2').style.display = 'none';
-      document.getElementById('page3').style.display = 'flex';
-    }
-
-    function blowCandle() {
-      const flame = document.getElementById('flame');
-      flame.style.display = 'none';
-      let page2 = document.getElementById('page2');
-      page2.style.background = '#ffc0cb';
-      document.getElementById('nextBtn').style.display = 'block';
-
-      for (let i = 0; i < 60; i++) {
-        let star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + 'vw';
-        star.style.top = -10 + 'px';
-        star.style.animationDuration = (Math.random() * 2 + 2) + 's';
-        page2.appendChild(star);
-
-        setTimeout(() => {
-          star.remove();
-        }, 4000);
-      }
-    }
-
-    document.querySelector('.candle').addEventListener('click', blowCandle);
-  </script>
 </body>
 </html>
